@@ -1,0 +1,28 @@
+{
+  "name": "web-repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "check": "pnpm -r run check",
+    "dev": "pnpm -r run dev",
+    "format": "pnpm -r run format"
+  },
+  "dependencies": {
+    "@arco-design/web-react": "^2.66.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@rsbuild/core": "^1.3.1",
+    "@rsbuild/plugin-react": "^1.1.1",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "typescript": "^5.8.2"
+  }
+}
