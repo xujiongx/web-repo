@@ -1,3 +1,5 @@
+// 在文件顶部添加以下导入
+import '@arco-design/web-react/dist/css/arco.css';
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";

@@ -14,8 +14,14 @@
   },
   "dependencies": {
     "@arco-design/web-react": "^2.66.1",
+    "@rsbuild/plugin-less": "^1.2.4",
+    "@tanstack/react-router": "^1.120.11",
+    "@tanstack/react-router-devtools": "^1.120.11",
+    "@tanstack/router-plugin": "^1.120.11",
+    "@types/node": "^22.15.21",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "rspack": "link:@tanstack/router-plugin/rspack"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

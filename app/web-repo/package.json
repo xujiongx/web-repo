@@ -8,5 +8,8 @@
     "dev": "rsbuild dev --open",
     "preview": "rsbuild preview",
     "format": "biome format --write"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21"
   }
 }
