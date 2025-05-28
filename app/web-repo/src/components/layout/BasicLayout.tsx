@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Layout, Menu, Avatar, Dropdown } from "@arco-design/web-react";
 import { IconUser } from "@arco-design/web-react/icon";
-import { Outlet, useNavigate } from "@tanstack/react-router";
-import { menuConfig, MenuItemType } from "./menuConfig";
+import { Outlet, useNavigate, useLocation } from "@tanstack/react-router"; // 新增 useLocation 导入
+import { menuConfig, type MenuItemType } from "./menuConfig";
 import { userMenuConfig } from "./userConfig";
 import styles from "./BasicLayout.module.less";
 
@@ -13,9 +13,23 @@ const SubMenu = Menu.SubMenu;
 const BasicLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); // 新增：获取当前路由信息
 
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
+  };
+
+  const getActiveKey = (pathname: string) => {
+    const findKey = (items: MenuItemType[]): string | undefined => {
+      for (const item of items) {
+        if (item.path === pathname) return item.key;
+        if (item.children) {
+          const childKey = findKey(item.children);
+          if (childKey) return childKey;
+        }
+      }
+    };
+    return findKey(menuConfig) || "home";
   };
 
   const renderMenuItem = (menuItem: MenuItemType) => {
@@ -103,7 +117,11 @@ const BasicLayout: React.FC = () => {
           className={styles.sider}
           onCollapse={toggleCollapse}
         >
-          <Menu defaultSelectedKeys={["home"]} className={styles.menu}>
+          <Menu
+            selectedKeys={[getActiveKey(location.pathname)]} // 使用正确的 location 对象
+            defaultSelectedKeys={["home"]}
+            className={styles.menu}
+          >
             {menuConfig.map(renderMenuItem)}
           </Menu>
         </Sider>
