@@ -5,6 +5,11 @@ import { TanStackRouterRspack } from "@tanstack/router-plugin/rspack";
 import { join } from "path";
 
 export default defineConfig({
+  output: {
+    copy: [
+      { from: "vercel.json", to: "" }, // 将根目录的 vercel.json 复制到输出目录
+    ],
+  },
   source: {
     alias: {
       "@@": join(__dirname, "../..", "src"),
