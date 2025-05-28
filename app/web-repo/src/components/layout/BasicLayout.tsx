@@ -24,10 +24,14 @@ const BasicLayout: React.FC = () => {
         <SubMenu
           key={menuItem.key}
           title={
-            <span>
-              <span>{menuItem.icon && <menuItem.icon />}</span>
+            <div className={styles.menuTitle}>
+              {menuItem.icon ? (
+                <menuItem.icon className={styles.menuIcon} />
+              ) : (
+                <span className={styles.menuIcon} />
+              )}
               <span>{menuItem.title}</span>
-            </span>
+            </div>
           }
         >
           {menuItem.children.map(renderMenuItem)}
@@ -44,10 +48,14 @@ const BasicLayout: React.FC = () => {
           })
         }
       >
-        <span style={{ marginRight: menuItem.icon ? 0 : "10px" }}>
-          {menuItem.icon && <menuItem.icon />}
-        </span>
-        <span>{menuItem.title}</span>
+        <div className={styles.menuTitle}>
+          {menuItem.icon ? (
+            <menuItem.icon className={styles.menuIcon} />
+          ) : (
+            <span className={styles.menuIcon} />
+          )}
+          <span>{menuItem.title}</span>
+        </div>
       </MenuItem>
     );
   };
@@ -66,42 +74,39 @@ const BasicLayout: React.FC = () => {
 
   return (
     <Layout className={styles.layout}>
-      <Sider
-        collapsed={collapsed}
-        collapsible
-        trigger={null}
-        className={styles.sider}
-      >
-        <div className={styles.logo}>{collapsed ? "AD" : "Arco Admin"}</div>
-        <Menu
-          defaultSelectedKeys={["home"]}
-          defaultOpenKeys={["dashboard"]}
-          className={styles.menu}
-          hasCollapseButton
-          onCollapseChange={toggleCollapse}
+      <Header className={styles.header}>
+        <div className={styles.headerLeft}>
+          <div className={styles.logo}>Arco Admin</div>
+        </div>
+        <div className={styles.headerRight}>
+          <Dropdown
+            droplist={
+              <Menu onClickMenuItem={handleUserMenuClick}>
+                {userMenuConfig.map((item) => (
+                  <MenuItem key={item.key}>{item.title}</MenuItem>
+                ))}
+              </Menu>
+            }
+            position="br"
+            trigger={["click"]}
+          >
+            <Avatar className={styles.avatar} size={32}>
+              <IconUser />
+            </Avatar>
+          </Dropdown>
+        </div>
+      </Header>
+      <Layout className={styles.pageContainer}>
+        <Sider
+          collapsed={collapsed}
+          collapsible
+          className={styles.sider}
+          onCollapse={toggleCollapse}
         >
-          {menuConfig.map(renderMenuItem)}
-        </Menu>
-      </Sider>
-      <Layout>
-        <Header className={styles.header}>
-          <div className={styles.headerRight}>
-            <Dropdown
-              droplist={
-                <Menu onClickMenuItem={handleUserMenuClick}>
-                  {userMenuConfig.map((item) => (
-                    <MenuItem key={item.key}>{item.title}</MenuItem>
-                  ))}
-                </Menu>
-              }
-              position="br"
-            >
-              <Avatar className={styles.avatar} size={32}>
-                <IconUser />
-              </Avatar>
-            </Dropdown>
-          </div>
-        </Header>
+          <Menu defaultSelectedKeys={["home"]} className={styles.menu}>
+            {menuConfig.map(renderMenuItem)}
+          </Menu>
+        </Sider>
         <Content className={styles.content}>
           <div className={styles.contentWrapper}>
             <Outlet />

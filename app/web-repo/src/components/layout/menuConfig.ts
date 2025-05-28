@@ -1,4 +1,8 @@
-import { IconHome, IconDashboard, IconSettings } from '@arco-design/web-react/icon';
+import {
+  IconHome,
+  IconDashboard,
+  IconSettings,
+} from "@arco-design/web-react/icon";
 
 export interface MenuItemType {
   key: string;
@@ -10,32 +14,32 @@ export interface MenuItemType {
 
 export const menuConfig: MenuItemType[] = [
   {
-    key: 'home',
-    title: '首页',
+    key: "home",
+    title: "首页",
     icon: IconHome,
-    path: '/'
+    path: "/",
   },
   {
-    key: 'dashboard',
-    title: '仪表盘',
+    key: "dashboard",
+    title: "仪表盘",
     icon: IconDashboard,
     children: [
       {
-        key: 'console',
-        title: '分析页',
-        path: '/dashboard/console'
+        key: "console",
+        title: "分析页",
+        path: "/dashboard/console",
       },
       {
-        key: 'monitor',
-        title: '监控页',
-        path: '/dashboard/monitor'
+        key: "monitor",
+        title: "监控页",
+        path: "/dashboard/monitor",
       },
-    ]
+    ],
   },
   {
-    key: 'settings',
-    title: '系统设置',
+    key: "settings",
+    title: "系统设置",
     icon: IconSettings,
-    path: '/settings'
-  }
+    path: "/settings",
+  },
 ];
