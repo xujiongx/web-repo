@@ -1,3 +1,4 @@
+import { PageHeader, Radio } from '@arco-design/web-react'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_app/home/')({
@@ -5,5 +6,22 @@ export const Route = createFileRoute('/_app/home/')({
 })
 
 function RouteComponent() {
-  return <div>Home</div>
+  return (
+    <div>
+      <PageHeader
+        style={{ background: "var(--color-bg-2)" }}
+        title="首页"
+        subTitle="This is a description"
+        extra={
+          <div>
+            <Radio.Group mode="fill" type="button" defaultValue="small">
+              <Radio value="large">Large</Radio>
+              <Radio value="medium">Medium</Radio>
+              <Radio value="small">Small</Radio>
+            </Radio.Group>
+          </div>
+        }
+      />
+    </div>
+  );
 }
