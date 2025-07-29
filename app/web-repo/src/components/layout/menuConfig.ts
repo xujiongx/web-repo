@@ -2,6 +2,7 @@ import {
   IconHome,
   IconDashboard,
   IconSettings,
+  IconShareAlt,
 } from "@arco-design/web-react/icon";
 
 export interface MenuItemType {
@@ -41,5 +42,22 @@ export const menuConfig: MenuItemType[] = [
     title: "系统设置",
     icon: IconSettings,
     path: "/settings",
+  },
+  {
+    key: "diagram",
+    title: "图表工具",
+    icon: IconShareAlt,
+    children: [
+      {
+        key: "mermaid",
+        title: "流程图",
+        path: "/mermaid",
+      },
+      {
+        key: "markdown",
+        title: "Markdown",
+        path: "/markdown",
+      },
+    ],
   },
 ];

@@ -14,6 +14,8 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as AppImport } from './routes/_app'
 import { Route as AppIndexImport } from './routes/_app/index'
 import { Route as AppSettingsIndexImport } from './routes/_app/settings/index'
+import { Route as AppMermaidIndexImport } from './routes/_app/mermaid/index'
+import { Route as AppMarkdownIndexImport } from './routes/_app/markdown/index'
 import { Route as AppHomeIndexImport } from './routes/_app/home/index'
 import { Route as AppDashboardMonitorIndexImport } from './routes/_app/dashboard/monitor/index'
 import { Route as AppDashboardConsoleIndexImport } from './routes/_app/dashboard/console/index'
@@ -34,6 +36,18 @@ const AppIndexRoute = AppIndexImport.update({
 const AppSettingsIndexRoute = AppSettingsIndexImport.update({
   id: '/settings/',
   path: '/settings/',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppMermaidIndexRoute = AppMermaidIndexImport.update({
+  id: '/mermaid/',
+  path: '/mermaid/',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppMarkdownIndexRoute = AppMarkdownIndexImport.update({
+  id: '/markdown/',
+  path: '/markdown/',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -80,6 +94,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppHomeIndexImport
       parentRoute: typeof AppImport
     }
+    '/_app/markdown/': {
+      id: '/_app/markdown/'
+      path: '/markdown'
+      fullPath: '/markdown'
+      preLoaderRoute: typeof AppMarkdownIndexImport
+      parentRoute: typeof AppImport
+    }
+    '/_app/mermaid/': {
+      id: '/_app/mermaid/'
+      path: '/mermaid'
+      fullPath: '/mermaid'
+      preLoaderRoute: typeof AppMermaidIndexImport
+      parentRoute: typeof AppImport
+    }
     '/_app/settings/': {
       id: '/_app/settings/'
       path: '/settings'
@@ -109,6 +137,8 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
   AppHomeIndexRoute: typeof AppHomeIndexRoute
+  AppMarkdownIndexRoute: typeof AppMarkdownIndexRoute
+  AppMermaidIndexRoute: typeof AppMermaidIndexRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
   AppDashboardConsoleIndexRoute: typeof AppDashboardConsoleIndexRoute
   AppDashboardMonitorIndexRoute: typeof AppDashboardMonitorIndexRoute
@@ -117,6 +147,8 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppIndexRoute: AppIndexRoute,
   AppHomeIndexRoute: AppHomeIndexRoute,
+  AppMarkdownIndexRoute: AppMarkdownIndexRoute,
+  AppMermaidIndexRoute: AppMermaidIndexRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
   AppDashboardConsoleIndexRoute: AppDashboardConsoleIndexRoute,
   AppDashboardMonitorIndexRoute: AppDashboardMonitorIndexRoute,
@@ -128,6 +160,8 @@ export interface FileRoutesByFullPath {
   '': typeof AppRouteWithChildren
   '/': typeof AppIndexRoute
   '/home': typeof AppHomeIndexRoute
+  '/markdown': typeof AppMarkdownIndexRoute
+  '/mermaid': typeof AppMermaidIndexRoute
   '/settings': typeof AppSettingsIndexRoute
   '/dashboard/console': typeof AppDashboardConsoleIndexRoute
   '/dashboard/monitor': typeof AppDashboardMonitorIndexRoute
@@ -136,6 +170,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof AppIndexRoute
   '/home': typeof AppHomeIndexRoute
+  '/markdown': typeof AppMarkdownIndexRoute
+  '/mermaid': typeof AppMermaidIndexRoute
   '/settings': typeof AppSettingsIndexRoute
   '/dashboard/console': typeof AppDashboardConsoleIndexRoute
   '/dashboard/monitor': typeof AppDashboardMonitorIndexRoute
@@ -146,6 +182,8 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/_app/': typeof AppIndexRoute
   '/_app/home/': typeof AppHomeIndexRoute
+  '/_app/markdown/': typeof AppMarkdownIndexRoute
+  '/_app/mermaid/': typeof AppMermaidIndexRoute
   '/_app/settings/': typeof AppSettingsIndexRoute
   '/_app/dashboard/console/': typeof AppDashboardConsoleIndexRoute
   '/_app/dashboard/monitor/': typeof AppDashboardMonitorIndexRoute
@@ -157,16 +195,27 @@ export interface FileRouteTypes {
     | ''
     | '/'
     | '/home'
+    | '/markdown'
+    | '/mermaid'
     | '/settings'
     | '/dashboard/console'
     | '/dashboard/monitor'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/home' | '/settings' | '/dashboard/console' | '/dashboard/monitor'
+  to:
+    | '/'
+    | '/home'
+    | '/markdown'
+    | '/mermaid'
+    | '/settings'
+    | '/dashboard/console'
+    | '/dashboard/monitor'
   id:
     | '__root__'
     | '/_app'
     | '/_app/'
     | '/_app/home/'
+    | '/_app/markdown/'
+    | '/_app/mermaid/'
     | '/_app/settings/'
     | '/_app/dashboard/console/'
     | '/_app/dashboard/monitor/'
@@ -199,6 +248,8 @@ export const routeTree = rootRoute
       "children": [
         "/_app/",
         "/_app/home/",
+        "/_app/markdown/",
+        "/_app/mermaid/",
         "/_app/settings/",
         "/_app/dashboard/console/",
         "/_app/dashboard/monitor/"
@@ -210,6 +261,14 @@ export const routeTree = rootRoute
     },
     "/_app/home/": {
       "filePath": "_app/home/index.tsx",
+      "parent": "/_app"
+    },
+    "/_app/markdown/": {
+      "filePath": "_app/markdown/index.tsx",
+      "parent": "/_app"
+    },
+    "/_app/mermaid/": {
+      "filePath": "_app/mermaid/index.tsx",
       "parent": "/_app"
     },
     "/_app/settings/": {
