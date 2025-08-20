@@ -8,8 +8,8 @@ import {
   IconClose,
   IconDragArrow,
 } from "@arco-design/web-react/icon";
-import { useConfigStore } from "../../store";
-import { useDraggable } from "../../hooks/useDraggable";
+import { useConfigStore } from "../store";
+import { useDraggable } from "../../../../hooks/useDraggable";
 import "./NodePanel.less";
 
 export interface NodeType {

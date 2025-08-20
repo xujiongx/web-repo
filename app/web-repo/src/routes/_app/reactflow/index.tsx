@@ -3,10 +3,10 @@ import { PageHeader, Button, Space, Message } from '@arco-design/web-react';
 import { IconRefresh, IconDownload, IconSave } from '@arco-design/web-react/icon';
 import { createFileRoute } from '@tanstack/react-router';
 import { ReactFlowProvider } from '@xyflow/react';
-import { NodePanel } from '../../../components/reactflow/NodePanel';
-import { FlowCanvas } from '../../../components/reactflow/FlowCanvas';
-import { ConfigPanel } from '../../../components/reactflow/ConfigPanel';
-import { useConfigStore } from '../../../store';
+import { NodePanel } from './components/NodePanel';
+import { FlowCanvas } from './components/FlowCanvas';
+import { ConfigPanel } from './components/ConfigPanel';
+import { useConfigStore } from './store';
 import '@xyflow/react/dist/style.css';
 import './index.less';
 

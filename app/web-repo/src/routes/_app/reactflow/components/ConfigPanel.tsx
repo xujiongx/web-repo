@@ -22,8 +22,8 @@ import {
   IconApps,        // 替代 IconNode
   IconLink,        // 替代 IconConnection
 } from '@arco-design/web-react/icon';
-import { useConfigStore } from '../../store';
-import { useDraggable } from '../../hooks/useDraggable';
+import { useConfigStore } from '../store';
+import { useDraggable } from '../../../../hooks/useDraggable';
 import './ConfigPanel.less';
 
 const { TabPane } = Tabs;

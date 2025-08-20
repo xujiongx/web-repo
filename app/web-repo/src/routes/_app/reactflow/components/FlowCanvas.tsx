@@ -17,7 +17,7 @@ import {
   BackgroundVariant,
 } from "@xyflow/react";
 import { Card } from "@arco-design/web-react";
-import { useConfigStore } from "../../store";
+import { useConfigStore } from "../store";
 import "./FlowCanvas.less";
 
 export interface FlowCanvasProps {
