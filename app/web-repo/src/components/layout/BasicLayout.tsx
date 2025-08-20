@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Layout, Menu, Avatar, Dropdown } from "@arco-design/web-react";
 import { IconUser } from "@arco-design/web-react/icon";
-import { Outlet, useNavigate, useLocation } from "@tanstack/react-router"; // 新增 useLocation 导入
+import { Outlet, useNavigate, useLocation } from "@tanstack/react-router";
 import { menuConfig, type MenuItemType } from "./menuConfig";
 import { userMenuConfig } from "./userConfig";
+import { useAuthStore } from "../../stores/authStore"; // 新增：导入认证store
 import styles from "./BasicLayout.module.less";
 
 const { Header, Sider, Content } = Layout;
@@ -13,7 +14,8 @@ const SubMenu = Menu.SubMenu;
 const BasicLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); // 新增：获取当前路由信息
+  const location = useLocation();
+  const { user, logout } = useAuthStore(); // 新增：获取用户信息和登出方法
 
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
@@ -81,8 +83,9 @@ const BasicLayout: React.FC = () => {
         to: menuItem.path,
       });
     } else if (key === "logout") {
-      // 处理退出登录逻辑
-      console.log("logout");
+      // 修改：实现真正的退出登录逻辑
+      logout(); // 调用store中的logout方法清除认证状态
+      navigate({ to: "/login" }); // 跳转到登录页
     }
   };
 
@@ -105,7 +108,8 @@ const BasicLayout: React.FC = () => {
             trigger={["click"]}
           >
             <Avatar className={styles.avatar} size={32}>
-              <IconUser />
+              {/* 修改：显示用户名首字母或默认图标 */}
+              {user?.name ? user.name.charAt(0).toUpperCase() : <IconUser />}
             </Avatar>
           </Dropdown>
         </div>
@@ -118,7 +122,7 @@ const BasicLayout: React.FC = () => {
           onCollapse={toggleCollapse}
         >
           <Menu
-            selectedKeys={[getActiveKey(location.pathname)]} // 使用正确的 location 对象
+            selectedKeys={[getActiveKey(location.pathname)]}
             defaultSelectedKeys={["home"]}
             className={styles.menu}
           >

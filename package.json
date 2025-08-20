@@ -19,6 +19,8 @@
     "@tanstack/react-router-devtools": "^1.120.11",
     "@tanstack/router-plugin": "^1.120.11",
     "@types/node": "^22.15.21",
+    "ahooks": "^3.9.3",
+    "axios": "^1.11.0",
     "dompurify": "^3.2.6",
     "highlight.js": "^11.11.1",
     "html-to-image": "^1.11.13",
