@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as AppImport } from './routes/_app'
 import { Route as AppIndexImport } from './routes/_app/index'
 import { Route as AppSettingsIndexImport } from './routes/_app/settings/index'
+import { Route as AppReactflowIndexImport } from './routes/_app/reactflow/index'
 import { Route as AppMermaidIndexImport } from './routes/_app/mermaid/index'
 import { Route as AppMarkdownIndexImport } from './routes/_app/markdown/index'
 import { Route as AppHomeIndexImport } from './routes/_app/home/index'
@@ -36,6 +37,12 @@ const AppIndexRoute = AppIndexImport.update({
 const AppSettingsIndexRoute = AppSettingsIndexImport.update({
   id: '/settings/',
   path: '/settings/',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppReactflowIndexRoute = AppReactflowIndexImport.update({
+  id: '/reactflow/',
+  path: '/reactflow/',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -108,6 +115,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppMermaidIndexImport
       parentRoute: typeof AppImport
     }
+    '/_app/reactflow/': {
+      id: '/_app/reactflow/'
+      path: '/reactflow'
+      fullPath: '/reactflow'
+      preLoaderRoute: typeof AppReactflowIndexImport
+      parentRoute: typeof AppImport
+    }
     '/_app/settings/': {
       id: '/_app/settings/'
       path: '/settings'
@@ -139,6 +153,7 @@ interface AppRouteChildren {
   AppHomeIndexRoute: typeof AppHomeIndexRoute
   AppMarkdownIndexRoute: typeof AppMarkdownIndexRoute
   AppMermaidIndexRoute: typeof AppMermaidIndexRoute
+  AppReactflowIndexRoute: typeof AppReactflowIndexRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
   AppDashboardConsoleIndexRoute: typeof AppDashboardConsoleIndexRoute
   AppDashboardMonitorIndexRoute: typeof AppDashboardMonitorIndexRoute
@@ -149,6 +164,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppHomeIndexRoute: AppHomeIndexRoute,
   AppMarkdownIndexRoute: AppMarkdownIndexRoute,
   AppMermaidIndexRoute: AppMermaidIndexRoute,
+  AppReactflowIndexRoute: AppReactflowIndexRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
   AppDashboardConsoleIndexRoute: AppDashboardConsoleIndexRoute,
   AppDashboardMonitorIndexRoute: AppDashboardMonitorIndexRoute,
@@ -162,6 +178,7 @@ export interface FileRoutesByFullPath {
   '/home': typeof AppHomeIndexRoute
   '/markdown': typeof AppMarkdownIndexRoute
   '/mermaid': typeof AppMermaidIndexRoute
+  '/reactflow': typeof AppReactflowIndexRoute
   '/settings': typeof AppSettingsIndexRoute
   '/dashboard/console': typeof AppDashboardConsoleIndexRoute
   '/dashboard/monitor': typeof AppDashboardMonitorIndexRoute
@@ -172,6 +189,7 @@ export interface FileRoutesByTo {
   '/home': typeof AppHomeIndexRoute
   '/markdown': typeof AppMarkdownIndexRoute
   '/mermaid': typeof AppMermaidIndexRoute
+  '/reactflow': typeof AppReactflowIndexRoute
   '/settings': typeof AppSettingsIndexRoute
   '/dashboard/console': typeof AppDashboardConsoleIndexRoute
   '/dashboard/monitor': typeof AppDashboardMonitorIndexRoute
@@ -184,6 +202,7 @@ export interface FileRoutesById {
   '/_app/home/': typeof AppHomeIndexRoute
   '/_app/markdown/': typeof AppMarkdownIndexRoute
   '/_app/mermaid/': typeof AppMermaidIndexRoute
+  '/_app/reactflow/': typeof AppReactflowIndexRoute
   '/_app/settings/': typeof AppSettingsIndexRoute
   '/_app/dashboard/console/': typeof AppDashboardConsoleIndexRoute
   '/_app/dashboard/monitor/': typeof AppDashboardMonitorIndexRoute
@@ -197,6 +216,7 @@ export interface FileRouteTypes {
     | '/home'
     | '/markdown'
     | '/mermaid'
+    | '/reactflow'
     | '/settings'
     | '/dashboard/console'
     | '/dashboard/monitor'
@@ -206,6 +226,7 @@ export interface FileRouteTypes {
     | '/home'
     | '/markdown'
     | '/mermaid'
+    | '/reactflow'
     | '/settings'
     | '/dashboard/console'
     | '/dashboard/monitor'
@@ -216,6 +237,7 @@ export interface FileRouteTypes {
     | '/_app/home/'
     | '/_app/markdown/'
     | '/_app/mermaid/'
+    | '/_app/reactflow/'
     | '/_app/settings/'
     | '/_app/dashboard/console/'
     | '/_app/dashboard/monitor/'
@@ -250,6 +272,7 @@ export const routeTree = rootRoute
         "/_app/home/",
         "/_app/markdown/",
         "/_app/mermaid/",
+        "/_app/reactflow/",
         "/_app/settings/",
         "/_app/dashboard/console/",
         "/_app/dashboard/monitor/"
@@ -269,6 +292,10 @@ export const routeTree = rootRoute
     },
     "/_app/mermaid/": {
       "filePath": "_app/mermaid/index.tsx",
+      "parent": "/_app"
+    },
+    "/_app/reactflow/": {
+      "filePath": "_app/reactflow/index.tsx",
       "parent": "/_app"
     },
     "/_app/settings/": {

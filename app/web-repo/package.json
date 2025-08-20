@@ -11,5 +11,8 @@
   },
   "devDependencies": {
     "@types/node": "^22.15.21"
+  },
+  "dependencies": {
+    "@xyflow/react": "^12.8.2"
   }
 }

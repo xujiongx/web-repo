@@ -58,6 +58,11 @@ export const menuConfig: MenuItemType[] = [
         title: "Markdown",
         path: "/markdown",
       },
+      {
+        key: "reactflow",
+        title: "ReactFlow",
+        path: "/reactflow",
+      },
     ],
   },
 ];
