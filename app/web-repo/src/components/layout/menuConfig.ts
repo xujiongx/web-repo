@@ -63,6 +63,11 @@ export const menuConfig: MenuItemType[] = [
         title: "ReactFlow",
         path: "/reactflow",
       },
+      {
+        key: "canvas",
+        title: "无限画布",
+        path: "/canvas",
+      },
     ],
   },
 ];

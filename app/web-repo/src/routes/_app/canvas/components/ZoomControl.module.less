@@ -1,0 +1,77 @@
+.zoomControl {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 100;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e6eb;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+}
+
+.zoomDisplay {
+  min-width: 45px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1d2129;
+  user-select: none;
+}
+
+/* 按钮样式优化 */
+.controls :global(.arco-btn) {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 4px;
+  border: 1px solid #e5e6eb;
+  
+  &:hover:not([disabled]) {
+    background-color: #f7f8fa;
+    border-color: #c9cdd4;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* 分割线样式 */
+.controls :global(.arco-divider-vertical) {
+  height: 16px;
+  margin: 0 4px;
+  border-color: #e5e6eb;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .zoomControl {
+    bottom: 10px;
+    left: 10px;
+    transform: scale(0.9);
+    transform-origin: bottom left;
+  }
+  
+  .controls {
+    padding: 6px 8px;
+    gap: 6px;
+  }
+  
+  .controls :global(.arco-btn) {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .zoomDisplay {
+    min-width: 40px;
+    font-size: 11px;
+  }
+}

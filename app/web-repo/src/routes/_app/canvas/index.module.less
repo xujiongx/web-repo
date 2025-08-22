@@ -1,0 +1,20 @@
+.canvasPage {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  height: 100%;
+}
+
+.toolbar {
+  flex-shrink: 0;
+  background: #fff;
+  z-index: 10;
+}
+
+.canvasContainer {
+  flex: 1;
+  overflow: hidden;
+  background: #fafafa;
+  position: relative;
+  min-height: 0; /* 重要：允许flex子元素缩小 */
+}

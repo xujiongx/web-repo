@@ -1,0 +1,55 @@
+.miniMap {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e6eb;
+  overflow: hidden;
+}
+
+.header {
+  padding: 8px 12px;
+  background: #f7f8fa;
+  border-bottom: 1px solid #e5e6eb;
+  font-size: 12px;
+  font-weight: 500;
+  color: #4e5969;
+  text-align: center;
+}
+
+.canvas {
+  display: block;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .miniMap {
+    width: 160px;
+    transform: scale(0.8);
+    transform-origin: bottom right;
+  }
+}
+
+@media (max-width: 768px) {
+  .miniMap {
+    bottom: 10px;
+    right: 10px;
+    transform: scale(0.7);
+    transform-origin: bottom right;
+  }
+  
+  .header {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+}

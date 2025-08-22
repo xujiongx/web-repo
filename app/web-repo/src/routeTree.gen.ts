@@ -20,6 +20,7 @@ import { Route as AppReactflowIndexImport } from './routes/_app/reactflow/index'
 import { Route as AppMermaidIndexImport } from './routes/_app/mermaid/index'
 import { Route as AppMarkdownIndexImport } from './routes/_app/markdown/index'
 import { Route as AppHomeIndexImport } from './routes/_app/home/index'
+import { Route as AppCanvasIndexImport } from './routes/_app/canvas/index'
 import { Route as AppDashboardMonitorIndexImport } from './routes/_app/dashboard/monitor/index'
 import { Route as AppDashboardConsoleIndexImport } from './routes/_app/dashboard/console/index'
 
@@ -78,6 +79,12 @@ const AppHomeIndexRoute = AppHomeIndexImport.update({
   getParentRoute: () => AppRoute,
 } as any)
 
+const AppCanvasIndexRoute = AppCanvasIndexImport.update({
+  id: '/canvas/',
+  path: '/canvas/',
+  getParentRoute: () => AppRoute,
+} as any)
+
 const AppDashboardMonitorIndexRoute = AppDashboardMonitorIndexImport.update({
   id: '/dashboard/monitor/',
   path: '/dashboard/monitor/',
@@ -120,6 +127,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AppIndexImport
+      parentRoute: typeof AppImport
+    }
+    '/_app/canvas/': {
+      id: '/_app/canvas/'
+      path: '/canvas'
+      fullPath: '/canvas'
+      preLoaderRoute: typeof AppCanvasIndexImport
       parentRoute: typeof AppImport
     }
     '/_app/home/': {
@@ -178,6 +192,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
+  AppCanvasIndexRoute: typeof AppCanvasIndexRoute
   AppHomeIndexRoute: typeof AppHomeIndexRoute
   AppMarkdownIndexRoute: typeof AppMarkdownIndexRoute
   AppMermaidIndexRoute: typeof AppMermaidIndexRoute
@@ -189,6 +204,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppIndexRoute: AppIndexRoute,
+  AppCanvasIndexRoute: AppCanvasIndexRoute,
   AppHomeIndexRoute: AppHomeIndexRoute,
   AppMarkdownIndexRoute: AppMarkdownIndexRoute,
   AppMermaidIndexRoute: AppMermaidIndexRoute,
@@ -205,6 +221,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/': typeof AppIndexRoute
+  '/canvas': typeof AppCanvasIndexRoute
   '/home': typeof AppHomeIndexRoute
   '/markdown': typeof AppMarkdownIndexRoute
   '/mermaid': typeof AppMermaidIndexRoute
@@ -218,6 +235,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/': typeof AppIndexRoute
+  '/canvas': typeof AppCanvasIndexRoute
   '/home': typeof AppHomeIndexRoute
   '/markdown': typeof AppMarkdownIndexRoute
   '/mermaid': typeof AppMermaidIndexRoute
@@ -233,6 +251,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/_app/': typeof AppIndexRoute
+  '/_app/canvas/': typeof AppCanvasIndexRoute
   '/_app/home/': typeof AppHomeIndexRoute
   '/_app/markdown/': typeof AppMarkdownIndexRoute
   '/_app/mermaid/': typeof AppMermaidIndexRoute
@@ -249,6 +268,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/'
+    | '/canvas'
     | '/home'
     | '/markdown'
     | '/mermaid'
@@ -261,6 +281,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/'
+    | '/canvas'
     | '/home'
     | '/markdown'
     | '/mermaid'
@@ -274,6 +295,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/_app/'
+    | '/_app/canvas/'
     | '/_app/home/'
     | '/_app/markdown/'
     | '/_app/mermaid/'
@@ -315,6 +337,7 @@ export const routeTree = rootRoute
       "filePath": "_app.tsx",
       "children": [
         "/_app/",
+        "/_app/canvas/",
         "/_app/home/",
         "/_app/markdown/",
         "/_app/mermaid/",
@@ -332,6 +355,10 @@ export const routeTree = rootRoute
     },
     "/_app/": {
       "filePath": "_app/index.tsx",
+      "parent": "/_app"
+    },
+    "/_app/canvas/": {
+      "filePath": "_app/canvas/index.tsx",
       "parent": "/_app"
     },
     "/_app/home/": {

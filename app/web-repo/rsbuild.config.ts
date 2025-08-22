@@ -27,7 +27,7 @@ export default defineConfig({
           target: "react",
           autoCodeSplitting: true,
           routeFileIgnorePattern:
-            ".((hooks|const).ts)|components|const|services|types|hooks|modules|store", // 修改这里
+            ".((hooks|const).ts)|components|const|services|types|hooks|modules|store|utils", // 修改这里
         }),
       ],
     },
