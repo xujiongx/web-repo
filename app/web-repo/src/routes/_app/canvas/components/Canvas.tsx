@@ -51,13 +51,23 @@ const Canvas = forwardRef<HTMLCanvasElement>((props, ref) => {
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('keyup', handleKeyUp);
 
+    // 为滚轮事件添加非被动监听器，以支持preventDefault
+    const canvas = canvasRef.current;
+    if (canvas) {
+      canvas.addEventListener('wheel', handleWheel as any, { passive: false });
+    }
+
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keyup', handleKeyUp);
+      
+      if (canvas) {
+        canvas.removeEventListener('wheel', handleWheel as any);
+      }
     };
-  }, [handleMouseMove, handleMouseUp, handleKeyDown, handleKeyUp]);
+  }, [handleMouseMove, handleMouseUp, handleKeyDown, handleKeyUp, handleWheel]);
 
   // 重绘画布
   useEffect(() => {
@@ -95,7 +105,6 @@ const Canvas = forwardRef<HTMLCanvasElement>((props, ref) => {
         onMouseDown={handleMouseDown}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onWheel={handleWheel}
       />
     </div>
   );

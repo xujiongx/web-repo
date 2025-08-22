@@ -239,7 +239,7 @@ export const useCanvasEvents = (
   }, [currentDrawing, isMouseDown, addElement, setCurrentDrawing, setIsMouseDown, setIsDrawing, setIsDragging, setIsPanning]);
 
   // 鼠标滚轮缩放
-  const handleWheel = useCallback((event: React.WheelEvent) => {
+  const handleWheel = useCallback((event: WheelEvent) => {
     event.preventDefault();
     
     const delta = event.deltaY > 0 ? 0.9 : 1.1;
